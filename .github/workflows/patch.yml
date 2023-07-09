@@ -43,8 +43,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "rosetta" 
-          tags: true
-          draft: true
-          overwrite: true
+          tags: false
+          draft: false
+          overwrite: false
           verbose: true
-          update_latest_release: true
+          update_latest_release: false
