@@ -45,3 +45,6 @@ jobs:
           file: "rosetta" 
           tags: true
           draft: true
+          overwrite: true
+          verbose: true
+          update_latest_release: true
