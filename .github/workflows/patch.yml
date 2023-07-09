@@ -31,7 +31,7 @@ jobs:
           draft: false
           overwrite: true
           verbose: true
-          update_latest_release: false
+          update_latest_release: true
           tag_name: "unpatched"
           
 
@@ -49,7 +49,7 @@ jobs:
           file: "rosetta" 
           tags: false
           draft: false
-          overwrite: false
+          overwrite: true
           verbose: true
-          update_latest_release: false
+          update_latest_release: true
           tag_name: "patched"
