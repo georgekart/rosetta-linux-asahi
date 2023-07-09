@@ -37,15 +37,9 @@ jobs:
           name: patched
           path: rosetta
           
-      - name: commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
+      - name: Upload To Github Release
+        uses: xresloader/upload-to-github-release@v1.3.12
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: release    
+          file: "rosetta" 
+          tags: true
+          draft: true
