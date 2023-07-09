@@ -21,10 +21,18 @@ jobs:
           pkgutil --expand-full RosettaUpdateAuto.pkg RosettaUpdateAuto.pkg-expanded
           cp RosettaUpdateAuto.pkg-expanded/RosettaUpdateAuto.pkg/Payload/Library/Apple/usr/libexec/oah/RosettaLinux/rosetta ./rosetta
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload To Github Release
+        uses: xresloader/upload-to-github-release@v1.3.12
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: unpatched
-          path: rosetta
+          file: "rosetta" 
+          tags: false
+          draft: false
+          overwrite: true
+          verbose: true
+          update_latest_release: false
+          tag_name: "unpatched"
           
 
       - name: Patch
@@ -32,10 +40,6 @@ jobs:
           dd if=<(printf '\x1f\x20\x03\xd5') of='rosetta' bs=1 seek=170828 conv=notrunc
           dd if=<(printf '\x1f\x20\x03\xd5') of='rosetta' bs=1 seek=170856 conv=notrunc
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: patched
-          path: rosetta
           
       - name: Upload To Github Release
         uses: xresloader/upload-to-github-release@v1.3.12
@@ -48,3 +52,4 @@ jobs:
           overwrite: false
           verbose: true
           update_latest_release: false
+          tag_name: "patched"
